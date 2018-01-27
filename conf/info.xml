@@ -2,7 +2,7 @@
 <module version="0.2">
     <title xml:lang="ko">첨부파일 로그</title>
     <description xml:lang="ko">첨부 파일에 관련된 활동을 모니터링 합니다.</description>
-    <version>1.7</version>
+    <version>1.8</version>
     <date>2018-01-08</date>
     <category>content</category>
 
