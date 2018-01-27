@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+    <title xml:lang="ko">첨부파일 로그</title>
+    <description xml:lang="ko">첨부 파일에 관련된 활동을 모니터링 합니다.</description>
+    <version>1.7</version>
+    <date>2018-01-08</date>
+    <category>content</category>
+
+    <author email_address="ned3y2k@gmail.com" link="http://ned3y2k.co.kr/">
+        <name xml:lang="ko">ned3y2k</name>
+    </author>
+</module>

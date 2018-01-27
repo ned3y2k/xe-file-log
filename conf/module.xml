@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<grants />
+	<permissions />
+	<actions>
+		<!-- admin -->
+		<action name="dispFile_logAdminList" type="view" admin_index="true" menu_name="file_log" menu_index="true" />
+	</actions>
+	<menus>
+		<menu name="file_log">
+			<title xml:lang="ko">파일 로그</title>
+		</menu>
+	</menus>
+</module>

@@ -1,0 +1,78 @@
+<query id="getFileLogList" action="select">
+    <tables>
+        <table name="file_logs" alias="file_logs" />
+        <table name="files" alias="files" type="left join">
+            <conditions>
+                <condition operation="equal" column="file_logs.file_srl" default="files.file_srl" />
+            </conditions>
+        </table>
+        <table name="member" alias="member" type="left join">
+            <conditions>
+                <condition operation="equal" column="member.member_srl" default="file_logs.member_srl" />
+            </conditions>
+        </table>
+        <table name="member_group_member" alias="member_group"  type="left join">
+            <conditions>
+                <condition operation="in" column="member_group.member_srl" default="file_logs.member_srl" filter="numbers"  pipe="and" />
+            </conditions>
+        </table>
+    </tables>
+    <columns>
+        <column name="file_logs.member_srl" alias="log_member_srl" />
+        <column name="file_logs.file_log_srl" />
+        <column name="file_logs.action" />
+        <column name="file_logs.log_date" />
+        <column name="file_logs.ipaddress" alias="log_ipaddress" />
+
+        <column name="files.file_srl" />
+        <column name="files.upload_target_srl" />
+        <column name="files.upload_target_type" />
+        <column name="files.sid" />
+        <column name="files.module_srl" />
+        <column name="files.download_count" />
+        <column name="files.direct_download" />
+        <column name="files.source_filename" />
+        <column name="files.uploaded_filename" />
+        <column name="files.file_size" />
+        <column name="files.comment" />
+        <column name="files.isvalid" />
+        <column name="files.cover_image" />
+        <column name="files.ipaddress" />
+
+
+        <column name="member.*" />
+    </columns>
+    <conditions>
+        <condition operation="in" column="file_logs.action" var="status" pipe="and" />
+
+        <condition operation="in" column="member_group.group_srl" var="group_srl" pipe="and" />
+
+        <condition operation="in" column="files.module_srl" var="s_module_srl" />
+        <condition operation="notin" column="files.module_srl" var="exclude_module_srl" pipe="and" />
+        <condition operation="equal" column="files.isvalid" var="isvalid" pipe="and" />
+        <condition operation="equal" column="files.direct_download" var="direct_download" pipe="and" />
+
+        <group pipe="and">
+            <condition operation="like" column="files.source_filename" var="s_filename" pipe="or" />
+            <condition operation="more" column="files.file_size" var="s_filesize_more" pipe="or" />
+            <condition operation="less" column="files.file_size" var="s_filesize_less" pipe="or" />
+            <condition operation="more" column="files.download_count" var="s_download_count" pipe="or" />
+            <condition operation="like_prefix" column="files.regdate" var="s_regdate" pipe="or" />
+            <condition operation="like_prefix" column="files.ipaddress" var="s_ipaddress" pipe="or" />
+            <condition operation="like" column="member.user_id" var="s_user_id" pipe="or" />
+            <condition operation="like" column="member.user_name" var="s_user_name" pipe="or" />
+            <condition operation="like" column="member.nick_name" var="s_nick_name" pipe="or" />
+        </group>
+    </conditions>
+
+    <groups>
+        <group column="file_log_srl"/>
+    </groups>
+
+    <navigation>
+        <index var="sort_index" default="file_logs.file_log_srl" order="desc" />
+        <list_count var="list_count" default="20" />
+        <page_count var="page_count" default="10" />
+        <page var="page" default="1" />
+    </navigation>
+</query>

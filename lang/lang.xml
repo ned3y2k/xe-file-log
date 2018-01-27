@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+    <item name="download_fail">
+        <value xml:lang="ko"><![CDATA[다운로드 실패]]></value>
+    </item>
+
+    <item name="download_success">
+        <value xml:lang="ko"><![CDATA[다운로드 성공]]></value>
+    </item>
+</lang>
